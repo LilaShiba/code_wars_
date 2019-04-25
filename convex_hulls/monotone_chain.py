@@ -1,3 +1,7 @@
+import math
+# do you spin right round right round baby?
+def cross_product(o,a,b):
+    return( a[0] - o[0]) * (b[1]- o[1]) - (a[1]-o[1]) * (b[0] - o[0])
 # merge sort
 def merge_sort(arr):
     if len(arr) > 1:
@@ -30,12 +34,29 @@ def merge_sort(arr):
             k+=1
 
     return arr
+# no dups
+def remove_dups(arr):
+    no_dups = []
+    for x in arr:
+        if x not in no_dups:
+            no_dups.append(x)
+    return no_dups
+# monotone chaine
+def hull_method(pointlist):
+    # remove dups
+    # get ride of colinear
+    points = merge_sort(pointlist)
+    lower = []
 
+    for p in points:
+        while len(lower) >= 2 and cross_product(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
 
-def easy(arr):
-    return sorted(arr)
+    upper = []
+    for p in reversed(points):
+        while len(upper) >= 2 and cross_product(upper[-2], upper[-1], p) <=0:
+            upper.pop()
+        upper.append(p)
 
-arr = [[0, 0], [5, 3], [0, 5], [0, 3]]
-    # [[0, 0], [0, 5], [5, 3]]
-print(merge_sort(arr))
-print(easy(arr))
+    return lower[:-1] + upper[:-1]

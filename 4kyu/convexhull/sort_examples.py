@@ -1,17 +1,17 @@
 # merge sort
-def merge_sort(arr, pos):
+def merge_sort(arr):
     if len(arr) > 1:
         mid = len(arr)//2
         l_half = arr[:mid]
         r_half = arr[mid:]
 
-        merge_sort(l_half, pos)
-        merge_sort(r_half, pos)
+        merge_sort(l_half)
+        merge_sort(r_half)
 
         li = ri = k = 0
         # two pointers to stitch together new array
         while li < len(l_half) and ri < len(r_half):
-            if l_half[li][pos] < r_half[ri][pos]:
+            if (l_half[li][0] + l_half[li][1]) < (r_half[ri][0] + r_half[ri][1]):
                 arr[k] = l_half[li]
                 li +=1
             else:
@@ -30,3 +30,12 @@ def merge_sort(arr, pos):
             k+=1
 
     return arr
+
+
+def easy(arr):
+    return sorted(arr)
+
+arr = [[0, 0], [5, 3], [0, 5], [0, 3]]
+    # [[0, 0], [0, 5], [5, 3]]
+print(merge_sort(arr))
+print(easy(arr))

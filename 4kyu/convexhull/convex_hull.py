@@ -4,19 +4,19 @@ def cross_product(o,a,b):
 
 
 # merge sort
-def merge_sort(arr, pos):
+def merge_sort(arr):
     if len(arr) > 1:
         mid = len(arr)//2
         l_half = arr[:mid]
         r_half = arr[mid:]
 
-        merge_sort(l_half, pos)
-        merge_sort(r_half, pos)
+        merge_sort(l_half)
+        merge_sort(r_half)
 
         li = ri = k = 0
         # two pointers to stitch together new array
         while li < len(l_half) and ri < len(r_half):
-            if l_half[li][pos] < r_half[ri][pos]:
+            if (l_half[li][0] + l_half[li][1]) < (r_half[ri][0] + r_half[ri][1]):
                 arr[k] = l_half[li]
                 li +=1
             else:
@@ -42,14 +42,15 @@ def remove_dups(arr):
             no_dups.append(x)
     return no_dups
 
+
+
+
 # gift wrap
 def hull_method(pointlist):
     # remove dups
-    points = remove_dups(pointlist)
+    #points = remove_dups(pointlist)
     # get ride of colinear
-    points = rid_colinear(points)
-    sorted_points = merge_sort(points,1)
-    points = sorted_points
+    points = merge_sort(pointlist)
     lower = []
 
     for p in points:

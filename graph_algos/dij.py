@@ -1,5 +1,7 @@
 #import heapq
 import time,random
+import sys
+
 start_time = time.time()
 
 def path_finder(matrix):
@@ -22,7 +24,7 @@ def path_finder(matrix):
         px, py = x,y
 
         if (x,y) == goal:
-            return (visited[goal] + matrix[x][y])
+            return (visited[goal])
 
 
         neighbors = ((x-1,y),(x,y-1),(x+1,y),(x,y+1))
@@ -39,7 +41,10 @@ def path_finder(matrix):
 
 
 import random, pprint
-matrix = [[x + 1 for x in range(1000)] for y in range(1000)]
-
+matrix = [[x + 1 for x in range(10)] for y in range(10)]
+# with open('matrix.txt', 'w') as f:
+#     for item in matrix:
+#         f.write("%s\n," % item)
+# f.close
 print(path_finder(matrix))
 print("--- %s seconds ---" % (time.time() - start_time))

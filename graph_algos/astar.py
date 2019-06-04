@@ -33,7 +33,7 @@ def path_finder(matrix):
                 parent[(cx,cy)] = (px,py)
 
                 if (x,y) == goal:
-                    return (visited[goal] + matrix[x][y])
+                    return (visited[goal])
 
 
 import random, pprint
